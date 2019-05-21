@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories
+{
+	jcenter()
+}
+
+dependencies
+{
+	testCompile "junit:junit:4.12+"
+	compile group: 'org.apache.poi', name: 'poi', version: '4.0.1'
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+}
+
+jar {
+	manifest 
+	{
+			attributes (
+            	'Main-Class': 'weightreporter.WeightMain'
+			)
+	}
+}
+
+test
+{
+	ignoreFailures = true
+}
+
+javadoc
+{
+	options.with
+	{
+		links 'https://docs.oracle.com/javase/8/docs/api/', 'gradle/javadocs/jdk'
+	}
+	
+	failOnError = false
+}
+
+build.dependsOn javadoc
